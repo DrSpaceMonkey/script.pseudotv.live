@@ -3273,7 +3273,7 @@ class ChannelList:
                     bctFileList.extend(CommercialMediaLST)
                     bctFileList.extend(trailerMediaLST)
                     random.shuffle(bctFileList)
-                    if bctFileList != 0:
+                    if len(bctFileList) >= MaxLength: #quick fix to prevent pop on empty 
                         LastItem = len(bctFileList) - 1
                         bctFileList.pop(LastItem)#remove last line, to ensure under MaxLength... todo improve logic     
                     File = uni(File + '\n'.join(bctFileList))
@@ -3418,7 +3418,7 @@ class ChannelList:
             setting2 = YoutubeCommercial[1]
             setting3 = YoutubeCommercial[2]
             
-            YoutubeLST = self.createYoutubeFilelist(setting1, setting2, setting3, channel)
+            YoutubeLST = self.createYoutubeFilelist(setting1, setting2, setting3, None, channel) 
             for i in range(len(YoutubeLST)):
                 Youtube = YoutubeLST[i]
                 duration = Youtube.split(',')[0]
@@ -3600,7 +3600,7 @@ class ChannelList:
             setting2 = YoutubeTrailers[1]
             setting3 = YoutubeTrailers[2]
             
-            YoutubeLST = self.createYoutubeFilelist(setting1, setting2, setting3, channel)
+            YoutubeLST = self.createYoutubeFilelist(setting1, setting2, setting3, None, channel)
             for i in range(len(YoutubeLST)):
                 Youtube = YoutubeLST[i]
                 duration = Youtube.split(',')[0]
